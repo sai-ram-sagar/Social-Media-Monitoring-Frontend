@@ -1,0 +1,220 @@
+.profile-photo-upload {
+  text-align: center;
+  border: 2px dashed #00000027;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.profile-file-input {
+  display: none; /* Hide default file input */
+}
+
+.profile-file-label {
+  width: 150px;
+  height: 45px;
+  background: #007bff; /* Blue for Person Photo */
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-file-name {
+  display: block;
+  margin-top: 10px;
+  color: #000000;
+  text-align: center; /* Ensures text is centered */
+}
+
+.photo-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Ensures the image stays centered */
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.photo-preview-image {
+    max-width: 150px;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+}
+
+
+/* --------------------------------------------------------------------------------- */
+.file-upload {
+  text-align: center;
+  border: 2px dashed #00000027;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.file-input {
+  display: none; /* Hide default file input */
+}
+
+.file-label {
+  width: 200px;
+  height: 45px;
+  background: #d9534f; /* Red for Crime Post */
+  color: white;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.profile-file-name {
+  display: block;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.file-preview {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.preview-image {
+  width: 200px;
+  height: auto;
+  border-radius: 5px;
+  display: block;
+}
+
+  /* ----------------------------------------------------------------------------------- */
+  .fir-file-upload {
+    text-align: center;
+    border: 2px dashed #00000027;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 8px;
+  }
+  
+  .fir-file-input {
+    display: none; /* Hide default file input */
+  }
+  
+  .fir-file-label {
+    width: 200px;
+    height: 45px;
+    background: #007bff;
+    color: white;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  
+  .fir-file-name {
+    display: block;
+    margin-top: 10px;
+    color: #fff;
+  }
+  
+  .fir-file-preview {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .preview-image {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+  }
+  
+/* ------------------------------------------------------------------------------------------------------------ */
+.other-files-upload {
+  text-align: center;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.other-files-input {
+  display: none; /* Hide default file input */
+}
+
+.other-files-label {
+  width: 100%;
+  max-width: 250px;
+  height: 45px;
+  background: #007bff; 
+  color: white;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px auto;
+  padding: 5px;
+}
+
+.other-files-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 150px; /* Adds scrolling for long lists */
+  overflow-y: auto;
+  width: 100%;
+}
+
+.other-file-name {
+  background: #e9ecef;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 280px;
+  font-size: 14px;
+  color: #333;
+  word-break: break-word;
+}
+
+.other-file-name button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 2px 8px;
+  margin-left: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.other-file-name button:hover {
+  background: darkred;
+}
+
+.no-file {
+  color: #666;
+  font-size: 14px;
+}
+
