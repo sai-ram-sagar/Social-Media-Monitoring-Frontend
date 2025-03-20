@@ -4,11 +4,13 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Container, TextField, Box, Dialog,DialogTitle, DialogContent, IconButton, Grid, Typography  } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import CloseIcon from "@mui/icons-material/Close";
 
 const CrimeReportsTable = () => {
   const [crimeReports, setCrimeReports] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [open, setOpen] = useState(false);
+  const [openImage, setOpenImage] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedRow, setSelectedRow] = useState(null);
 
@@ -23,30 +25,32 @@ const CrimeReportsTable = () => {
   // Open modal with selected row's data
   const handleOpenModal = (rowData) => {
     setSelectedRow(rowData);
-    setOpen(true);
+    setOpenModal(true);
+    console.log(rowData)
   };
 
     // Close modal
     const handleCloseModal = () => {
-      setOpen(false);
+      setOpenModal(false);
       setSelectedRow(null);
     };
 
   // Open image popup
   const handleOpenImage = (imageUrl) => {
     setSelectedImage(imageUrl);
-    setOpen(true);
+    setOpenImage(true);
   };
 
   // Close image popup
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseImage = () => {
+    setOpenImage(false);
     setSelectedImage(null);
   };
 
   // Render image links
   const renderImageCell = (params) => {
     if (!params.value) return "No Image";
+    console.log(params.value)
     return (
       <a
         href="#"
@@ -78,8 +82,8 @@ const CrimeReportsTable = () => {
     { field: "firDate", headerName: "FIR Date", width: 150, align: "center", headerAlign: "center" },
     // { field: "accusedStatus", headerName: "Accused Status", width: 180 },
     // { field: "chargesheetDate", headerName: "Chargesheet Date", width: 180 },
-    { field: "policeStation", headerName: "Police Station", width: 200 },
-    // { field: "profilePhoto", headerName: "Profile Photo", width: 150, renderCell: renderImageCell },
+    { field: "policeStation", headerName: "Police Station", width: 150 },
+    { field: "profilePhoto", headerName: "Profile Photo", width: 150, renderCell: renderImageCell },
     // { field: "postPhoto", headerName: "Post Photo", width: 150, renderCell: renderImageCell },
     // { field: "firFile", headerName: "FIR File", width: 150, renderCell: renderImageCell },
     // { field: "otherFiles", headerName: "Other Documents", width: 200, renderCell: renderImageCell },
@@ -129,38 +133,79 @@ const CrimeReportsTable = () => {
       />
 
       {/* Image Popup */}
-      <Dialog open={open} onClose={handleClose} maxWidth="xl">
+      <Dialog open={openImage} onClose={handleCloseImage} maxWidth="lg">
+        {/* Dialog Title with Close Button */}
+        <DialogTitle sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          Photo
+          <IconButton onClick={handleCloseImage} sx={{ ml: 1 }}>
+            <CloseIcon style={{color:"white", backgroundColor:"red"}} />
+          </IconButton>
+        </DialogTitle>
+
+        {/* Image Content */}
         <DialogContent>
-          {selectedImage && <img src={`http://localhost:5000/uploads/${selectedImage}`} alt="Crime Evidence" style={{ width: "100%" }} />}
+          {selectedImage && (
+            <img
+              src={`https://social-media-monitoring-backend-production.up.railway.app/uploads/${selectedImage}`}
+              alt="Crime Evidence"
+              style={{ width: "100%" }}
+            />
+          )}
         </DialogContent>
       </Dialog>
 
       {/* Modal for Viewing Data */}
-      <Dialog open={open} onClose={handleClose} maxWidth="sm" sx={{ borderRadius: 2 }}>
-      <DialogTitle sx={{ fontWeight: "bold", bgcolor: "#f5f5f5", py: 2, textAlign: "center" }}>
-        Crime Report Details
-      </DialogTitle>
-      <DialogContent sx={{ p: 3, bgcolor: "#fafafa" }}>
-        {selectedRow ? (
-          <Grid container spacing={2}>
-            {Object.entries(selectedRow).map(([key, value]) => (
-              <Grid item xs={6} key={key}>
-                <Typography variant="body2" sx={{ fontWeight: 600, textTransform: "capitalize", color: "#555" }}>
-                  {key.replace(/([A-Z])/g, " $1").trim()}:
-                </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 500, color: "#333" }}>
-                  {value || "N/A"}
-                </Typography>
-              </Grid>
-            ))}
-          </Grid>
+      <Dialog open={openModal} onClose={handleCloseModal} maxWidth="sm" sx={{ borderRadius: 2 }}>
+        <DialogTitle sx={{ fontWeight: "bold", bgcolor: "#f5f5f5", py: 2, textAlign: "center", display: "flex", justifyContent: "space-between", alignItems: "center"  }}>
+          Crime Report Details
+          <IconButton onClick={handleCloseModal} sx={{ ml: 1 }}>
+              <CloseIcon style={{color:"white", backgroundColor:"red"}} />
+            </IconButton>
+        </DialogTitle>
+        <DialogContent sx={{ p: 3, bgcolor: "#fafafa" }}>
+          {selectedRow ? (
+            <Grid container spacing={2}>
+    {Object.entries(selectedRow).map(([key, value]) => (
+      <Grid item xs={6} key={key}>
+        <Typography
+          variant="body2"
+          sx={{ fontWeight: 600, textTransform: "capitalize", color: "#555" }}
+        >
+          {key.replace(/([A-Z])/g, " $1").trim()}:
+        </Typography>
+
+        {/* Check if the value is an image URL */}
+        {typeof value === "string" && /\.(jpg|jpeg|png|gif)$/i.test(value) ? (
+          <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            handleOpenImage(value);
+          }}
+          style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }}
+        >
+          {value}
+        </a>
+        
         ) : (
-          <Typography variant="body2" sx={{ color: "#777", textAlign: "center", mt: 2 }}>
-            No details available
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 500, color: "#333", wordBreak: "break-word", overflowWrap: "break-word" }}
+          >
+            {value || "N/A"}
           </Typography>
         )}
-      </DialogContent>
-    </Dialog>
+      </Grid>
+    ))}
+  </Grid>
+
+          ) : (
+            <Typography variant="body2" sx={{ color: "#777", textAlign: "center", mt: 2 }}>
+              No details available
+            </Typography>
+          )}
+        </DialogContent>
+      </Dialog>
 
 
     </Container>
