@@ -156,6 +156,40 @@ const handleFirFileChange = (event) => {
 //     e.preventDefault();
 //     alert("Form submitted successfully!");
 //   };
+const handleCancelForm = () => {
+  if (window.confirm("Are you sure you want to cancel? All entered data will be lost.")) {
+    setFormData({
+      name: "",
+      gender: "",
+      age: "",
+      state: "",
+      address: "",
+      platform: "",
+      profileId: "",
+      url: "",
+      contentType: "",
+      targetType: "",
+      crimeNumber: "",
+      firDate: "",
+      accusedStatus: "",
+      chargesheetDate: "",
+      policeStation: "",
+      profilePhoto: null,
+      postPhoto: null,
+      firFile: null,
+      otherFiles: [],
+    });
+
+    // Reset file previews
+    setPhotoPreview(null);
+    setPostFilePreview(null);
+    setFirFilePreview(null);
+    setOtherFilesName([]);
+
+    alert("Form will be cleared.");
+  }
+};
+
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -586,7 +620,7 @@ const handleSubmit = async (e) => {
 
       <div className="mb-5" style={{ marginTop: "20px", display: "flex", justifyContent: "flex-end" }}>
         <Button type="button" onClick={handleSubmit} variant="contained" color="primary">Save</Button>
-        <Button variant="outlined" color="secondary" style={{ marginLeft: "10px" }}>Cancel</Button>
+        <Button onClick={handleCancelForm} variant="outlined" color="secondary" style={{ marginLeft: "10px" }}>Cancel</Button>
       </div>
     </form>
   );
