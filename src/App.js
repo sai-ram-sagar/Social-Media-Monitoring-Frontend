@@ -30,7 +30,7 @@ function App() {
         <Container className="mt-4">
           <Routes>
             <Route path="/" element={<h2 className="text-center" style={{marginTop:"30vh"}}>Welcome to Social Media Monitoring</h2>} />
-            <Route path="/add-report" element={<FormComponent />} />
+            <Route path="/add-entry" element={<FormComponent />} />
             <Route path="/view-reports" element={<CrimeReportsTable />} />
             <Route path="/modal-reports" element={<ModalReports />} />
           </Routes>
