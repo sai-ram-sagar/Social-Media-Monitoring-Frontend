@@ -18,7 +18,7 @@ function App() {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ms-auto">
                 <Nav.Link className="m-3" as={Link} to="/">Home</Nav.Link>
-                <Nav.Link className="m-3" as={Link} to="/add-report">Add Report</Nav.Link>
+                <Nav.Link className="m-3" as={Link} to="/add-report">Add Entry</Nav.Link>
                 <Nav.Link className="m-3" as={Link} to="/view-reports">View Reports</Nav.Link>
                 {/* <Nav.Link className="m-3" as={Link} to="/modal-reports">Modal Reports</Nav.Link> */}
               </Nav>
